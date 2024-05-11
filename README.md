@@ -34,22 +34,29 @@ import seaborn as sns
 covid = pd.read_csv(r'C:\Users\USER\Desktop\Data Analytics class\PYTHON\covid-data.csv')
 covid.head()
 ```
+![Imported data](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/4d1e45b2-3e99-4675-9006-14f75d12bb53)
+
 ## Data Assessment
 
 After importing our data, we changed out date datatype to datetime, we had missing values in some columns which was fixed, then outliers were corrected. this is is to help us have a clean dataset for our analysis. our dataset doesnt have any duplicates.
 ```
 covid.describe()
 ```
+![data describe](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/ce65ef47-a33b-4817-b16d-8dc44bdfc9ab)
+
 ```
 covid.shape
 ```
-#### we have imported our data. we have 189999 rows and 34 columns in our dataset. lets assess our data to check for null values, duplicates, wrong datatype and outliers
+we have imported our data. we have 189999 rows and 34 columns in our dataset. lets assess our data to check for null values, duplicates, wrong datatype and outliers
 ```
 sum(covid.duplicated())
 ```
+We have 0 duplictaes
 ```
 covid.info()
 ```
+![covid info](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/0167f1a2-5b6a-4939-9426-5795c6c08a92)
+
 ## Data Wrangling
 from the information above, we can see that our date datatype is written as object instead of datetime. continent has missing values too which we will fill up. we will also drop some tables that we dont need for our analysis.
 ```
@@ -68,14 +75,19 @@ because we dont have missing values in our date column, this code returned zero
 ```
 covid['date'].dt.year.value_counts()
 ```
+
 we have the complete 3 years as shown in our dataset
 ```
 covid['continent'].value_counts()
 ```
+![covid continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/6b3c74ec-39ac-4215-8df1-00bd3af0c697)
+
 here we have just 6 continents showing instead of 7, meaning we have missing values
 ```
 covid.isnull().sum()
 ```
+![covid isnull](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/c7a9bf5a-5908-4139-b716-c0d646fb6c8d)
+
 the missing values we have is in continent as we observed earlier. lets fill it up
 ```
 covid.fillna('Unknown', inplace = True)
