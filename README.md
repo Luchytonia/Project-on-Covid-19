@@ -187,15 +187,21 @@ Show how total number of covid-19 cases vary over different continents illustrat
 ```
 covid['continent'].value_counts()
 ```
+![continent count](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/7ab643a0-2180-4204-b79a-95edf69cb394)
+
 ```
 cases_by_continent = covid.groupby('continent')['total_cases'].sum().reset_index()
 cases_by_continent.sort_values(by='total_cases',ascending = False)
 ```
+![cases grouped by continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/3c961972-b778-4d8e-a027-4c27b45ec719)
+
 ```
 cases_by_continent = cases_by_continent.sort_values(by='total_cases', ascending=False)
 top_5_continents = cases_by_continent.head(5)
 top_5_continents
 ```
+![top 5 cases by continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/59b9686d-2ef1-49fb-be16-e674d739644f)
+
 ```
 plt.figure(figsize=(10, 5))
 plt.bar(top_5_continents.continent, top_5_continents.total_cases, width = 0.5, color='red')
@@ -206,6 +212,8 @@ plt.title('Total COVID-19 Cases by Continent (Top 5)', loc = 'center')
 plt.xticks(rotation=20)
 plt.show()
 ```
+![cases by continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/119b465d-1dc9-4814-8257-546af5e9b261)
+
 We couldnt identify the country with the highest covid case as we have some unknown values in our data set. that not withstanding, we also noted that we recorded less cases in Africa and Oceania
 ### Problem Statement 3
 Which countries have experienced significant fluctuations in the reproduction rate (R-value) of COVID-19 transmission?
@@ -213,6 +221,8 @@ Which countries have experienced significant fluctuations in the reproduction ra
 fluctuations_in_reproduction = covid.groupby('continent')['reproduction_rate'].sum().sort_values(ascending = False)
 fluctuations_in_reproduction
 ```
+![rep grouped by continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/b62c0f20-a211-452e-a1a9-f32daad01785)
+
 ```
 plt.figure(figsize= [10,5])
 plt.bar(fluctuations_in_reproduction.index, fluctuations_in_reproduction.values, width = (0.6), color='blue')
@@ -221,6 +231,8 @@ plt.ylabel('Reproduction_rate')
 plt.title('Fluctuation_In_Reproduction_Rate')
 plt.show()
 ```
+![fluctuation in reproduction](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/110e6554-44e3-44ea-8760-121f6a7f0702)
+
 Oceania and South Africa has the lowest reproduction rate due to covid effect. Africa wasnt affected much either because (fromthe previous analysis) it recorded more cardiovasc deaths and low covid 19 deaths
 ### Problem Statement 4
 What is the distribution of COVID-19 cases and deaths among different age groups, and how does it vary across continents?
@@ -241,6 +253,8 @@ grouped_data = covid.groupby('continent').agg({
 }).reset_index()
 grouped_data.head(7)
 ```
+![grouped data by continent](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/17a2ad9f-2370-4983-a76a-3be77395f1d7)
+
 graphical representation of distribution of cases among age groups across continents
 ```
 plt.figure(figsize=(14, 7))
@@ -255,6 +269,8 @@ plt.tight_layout()
 plt.legend()
 plt.show()
 ```
+![cases by age](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/37e09f77-1acf-4116-8554-c0047095f4a8)
+
 Distribution of deaths among age groups across continents
 ```
 plt.figure(figsize=(14, 7))
@@ -269,6 +285,8 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 ```
+![death distribution by age](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/21687d0d-da22-4f63-8ea3-b877ea23534c)
+
 Europe has the highest number of cases and death rate for individuals aged 65 as against Africa and Oceania which recorded few cases and deaths
 ## Conclusion
 In conclusion,from the analysis carried out,we recorded total number of 48591469648 covid 19 cases with 8294940569 reported total deaths. we observed that continents like Europe, South America and Asia recorded the highest covid deaths than other continents, also Africa, Asia, and Europe recorded more cardiovasc death. comparing the reported covid cases with the reported deaths, we have a case fatality rate of 1.5% which is quite high. Comparing the reproduction rate with continent, we observed that the reproduction rate in Oceania dropped due to covid 19 while the reproduction rate in continents like Europe, Africa and Asia remained almost same. Checking the effect of covid 19 cases on people fron age 65 upwars, we observed that Europe, South America and Asia the highest number of covid cases and deaths for individuals within that age range with Europe having the highest number. Generally its safe to say that Europe was affected more in the covid 19 case that was reported/recorded from 2020 to 2022.
