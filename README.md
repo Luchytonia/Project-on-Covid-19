@@ -126,12 +126,16 @@ Here we selected the columns we want to work on
 corr = covid_corr.corr()
 corr
 ```
+![covid corr](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/1c07ad53-034f-4277-9d48-94d8051f92f6)
+
 ```
 plt.figure(figsize=(10,7))
 sns.heatmap(covid_corr.corr(), annot=True, cmap='cool', vmin=-1, vmax=1, linewidth=0.5)
 plt.title('Correlation Between variables', pad = 30)
 plt.show()
 ```
+![correlation](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/2da6a432-3534-41a5-bfad-a99c20040465)
+
 from the above visual, we can note that correlation exist between population, total_deaths, positive rate, human development index. judging by the human population, we recorded high percentage of covid test that came out positive same way we recorded high covid 19 deaths. the human development index has a positive rate too as it affected a large number of the population.
 ```
 covid = covid.copy()
@@ -145,6 +149,18 @@ Lets check cardiac deaths by continent
 total_cardiovasc_death_rate = covid['cardiovasc_death_rate'].sum()
 total_cardiovasc_death_rate
 ```
+```
+death_corr = covid.groupby('continent')['cardiovasc_death_rate'].sum().sort_values(ascending = False)
+plt.figure(figsize = [9,5])
+plt.bar(death_corr.index, death_corr.values, width = 0.5, color = 'red')
+plt.xlabel('Continent')
+plt.ylabel('Cardiovasc Death Cases Reported')
+plt.title('Total cardiovasc death by continent', loc = 'center', pad = 10)
+plt.xticks(rotation = 50)
+plt.show()
+```
+![cardiovasc death](https://github.com/Luchytonia/Project-on-Covid-19/assets/54556297/0657eb32-ff72-43b5-85d6-46da4fa3391b)
+
 We noted that we have more cardiovasc death cases in african continent and less in South America
 
 Meanwhile, some columns wont be needed for our analysis so lets drop them.
